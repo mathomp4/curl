@@ -24,9 +24,12 @@ jobs:
       fail-fast: false
       matrix:
         build:
-        - name: Intel oneAPI
+        - name: Without SSL
           install: libpsl-dev libbrotli-dev libzstd-dev zlib1g-dev
-          configure: CC=icc --enable-debug
+          configure: CC=icc --enable-debug --without-ssl
+        - name: OpenSSL
+          install: libpsl-dev libbrotli-dev libzstd-dev zlib1g-dev libssl-dev
+          configure: CC=icc --enable-debug --with-openssl
 
     steps:
     - run: |
