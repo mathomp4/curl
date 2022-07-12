@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: curl
 
-name: Intel Compiler
+name: Linux
 
 on:
   # Trigger the workflow on push or pull requests, but only for the
@@ -24,10 +24,10 @@ jobs:
       fail-fast: false
       matrix:
         build:
-        - name: Without SSL
+        - name: Intel oneAPI - without SSL
           install: libpsl-dev libbrotli-dev libzstd-dev zlib1g-dev
           configure: CC=icc --enable-debug --without-ssl
-        - name: OpenSSL
+        - name: Intel oneAPI - OpenSSL
           install: libpsl-dev libbrotli-dev libzstd-dev zlib1g-dev libssl-dev
           configure: CC=icc --enable-debug --with-openssl
 
