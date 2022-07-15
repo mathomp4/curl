@@ -354,7 +354,7 @@ CURLcode Curl_sasl_start(struct SASL *sasl, struct Curl_easy *data,
   Curl_bufref_init(&resp);
   sasl->force_ir = force_ir;    /* Latch for future use */
   sasl->authused = 0;           /* No mechanism used yet */
-  enabledmechs = sasl->authmechs & sasl->prefmech;
+  enabledmechs = (unsigned short)(sasl->authmechs & sasl->prefmech);
   *progress = SASL_IDLE;
 
   /* Calculate the supported authentication mechanism, by decreasing order of
