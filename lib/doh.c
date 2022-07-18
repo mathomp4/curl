@@ -608,7 +608,10 @@ UNITTEST DOHcode doh_decode(const unsigned char *doh,
     return DOH_TOO_SMALL_BUFFER; /* too small */
   if(!doh || doh[0] || doh[1])
     return DOH_DNS_BAD_ID; /* bad ID */
-  rcode = doh[3] & 0x0f;
+
+  /* Explicit cast needed by Intel C which returns:
+   *   non-pointer conversion from "int" to "unsigned char" may lose significant bits */
+  rcode = (unsigned char)(doh[3] & 0x0f);
   if(rcode)
     return DOH_DNS_BAD_RCODE; /* bad rcode */
 
